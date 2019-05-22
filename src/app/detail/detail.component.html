@@ -9,7 +9,7 @@
           </div>
           <div class="front">
             <img *ngIf='post["type"] === "image"' src='{{post["media"]}}' width=400px height=300px>
-            
+
             <iframe *ngIf='post["type"] === "video"'
             width="560" height="315"
             [src]="_data.transform(post['media'].replace('/watch?v=', '/embed/').replace('https://youtu.be/','https://www.youtube.com/embed/'))"
@@ -19,7 +19,7 @@
           </div>
 
           <div class="card-body">
-            <a [routerLink]="['/post/'+i]">
+            <a [routerLink]="['']">
               <h4 class="card-title">{{post["title"]}}</h4>
             </a>
             <h6 class="card-title text-muted">{{post["labels"]}}</h6>

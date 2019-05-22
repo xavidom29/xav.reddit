@@ -1,0 +1,39 @@
+<div class="album py-5 bg-light" *ngFor="let post of _data.posts; let i = index">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10">
+        <div class="card mb-10 shadow-sm">
+          <div class="canal">
+            <small class="text-muted">Posted By : {{post["autor"]}} at Channel: {{post["canal"]}} </small>
+
+          </div>
+          <div class="front">
+
+            <img *ngIf='post["type"] === "image"' src='{{post["media"]}}' width=400px height=300px>
+
+            <iframe *ngIf='post["type"] === "video"' width="560" height="315" [src]="_data.transform(post['media'].replace('/watch?v=', '/embed/').replace('https://youtu.be/','https://www.youtube.com/embed/'))" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen>
+            </iframe>
+
+
+          </div>
+
+
+          <div class="card-body">
+            <a [routerLink]="['/post/'+i]">
+              <h4 class="card-title">{{post["title"]}}</h4>
+            </a>
+            <h6 class="card-title text-muted">{{post["labels"]}}</h6>
+            <p class="card-text">{{_data.getWords(post["text"])}}</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <a [routerLink]="['/post/'+i]"> <button type="button" class="btn btn-sm btn-outline-secondary">View More</button></a>
+              </div>
+              <small class="text-muted">{{_data.getTime(post["time"])}}</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
